@@ -1,0 +1,8 @@
+# Compiled class file
+*.class
+*.iml
+
+#### IntelliJ IDEA dir config ####
+.idea
+# Project exclude paths
+/target/
