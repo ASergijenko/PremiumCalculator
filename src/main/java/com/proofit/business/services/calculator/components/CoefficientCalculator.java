@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Component
 public class CoefficientCalculator {
     public BigDecimal calculateCoefficient(BigDecimal sumInsured, RiskType riskType) {
-        BigDecimal coefficient = BigDecimal.ZERO;
+        BigDecimal coefficient;
         switch (riskType) {
             case FIRE:
                 if (sumInsured.compareTo(Constants.FIRE_COEFFICIENT_INFLUENCING_VALUE) > 0) {
@@ -25,6 +25,8 @@ public class CoefficientCalculator {
                     coefficient = Constants.DEFAULT_COEFFICIENT_THEFT;
                 }
                 break;
+            default:
+                coefficient = BigDecimal.ZERO;
         }
         return coefficient;
     }
