@@ -38,7 +38,7 @@ public class PremiumCalculatorTest {
     }
 
     @Test
-    public void shouldCalculateCorrectPremium2_28EUR() {
+    public void shouldCalculateCorrectPremiumFor_2_28EUR() {
         Mockito.when(sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.FIRE)).thenReturn(BigDecimal.valueOf(100.00));
         Mockito.when(sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.THEFT)).thenReturn(BigDecimal.valueOf(8.00));
         Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(100.00), RiskType.FIRE)).thenReturn(Constants.DEFAULT_COEFFICIENT_FIRE);
@@ -51,7 +51,7 @@ public class PremiumCalculatorTest {
     }
 
     @Test
-    public void shouldCalculateCorrectPremium17_13EUR() {
+    public void shouldCalculateCorrectPremiumFor_17_13EUR() {
         Mockito.when(sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.FIRE)).thenReturn(BigDecimal.valueOf(500.00));
         Mockito.when(sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.THEFT)).thenReturn(BigDecimal.valueOf(102.51));
         Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(500.00), RiskType.FIRE)).thenReturn(Constants.CORRECTED_COEFFICIENT_FIRE);

@@ -22,13 +22,13 @@ public class SumInsuredByRiskCalculatorTest {
     }
 
     @Test
-    public void shouldReturnCorrectSumInsuredByRiskFire500() {
+    public void shouldReturnCorrectSumInsuredByRiskFireOfValue200() {
         BigDecimal actual = victim.calculateSumInsured(policy, RiskType.FIRE);
         assertEquals(BigDecimal.valueOf(200.00), actual);
     }
 
     @Test
-    public void shouldReturnCorrectSumInsuredByRiskTheft150() {
+    public void shouldReturnCorrectSumInsuredByRiskTheftOfValue150() {
         BigDecimal actual = victim.calculateSumInsured(policy, RiskType.THEFT);
         assertEquals(BigDecimal.valueOf(150.00), actual);
     }
