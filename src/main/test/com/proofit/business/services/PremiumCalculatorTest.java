@@ -5,13 +5,11 @@ import com.proofit.business.domain.*;
 import com.proofit.business.services.calculator.PremiumCalculator;
 import com.proofit.business.services.calculator.components.CoefficientCalculator;
 import com.proofit.business.services.calculator.components.SumInsuredByRiskCalculator;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
@@ -31,20 +29,10 @@ public class PremiumCalculatorTest {
     @InjectMocks
     private PremiumCalculator victim;
 
-    @Before
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Test
     public void shouldCalculateCorrectPremium2_28EUR() {
-        PolicySubObject policySubObjectFire = new PolicySubObject("TV", BigDecimal.valueOf(100.00), RiskType.FIRE);
-        PolicySubObject policySubObjectTheft = new PolicySubObject("Smartphone", BigDecimal.valueOf(8.00), RiskType.THEFT);
 
         List<PolicySubObject> policySubObjects = new ArrayList<>();
-        policySubObjects.add(policySubObjectFire);
-        policySubObjects.add(policySubObjectTheft);
-
         PolicyObject policyObject = new PolicyObject("House",policySubObjects);
         List<PolicyObject> policyObjects = new ArrayList<>();
         policyObjects.add(policyObject);
@@ -64,26 +52,8 @@ public class PremiumCalculatorTest {
 
    @Test
    public void shouldCalculateCorrectPremium17_13EUR() {
-       PolicySubObject policySubObjectFire1 = new PolicySubObject("TV", BigDecimal.valueOf(100.00), RiskType.FIRE);
-       PolicySubObject policySubObjectFire2 = new PolicySubObject("TV", BigDecimal.valueOf(100.00), RiskType.FIRE);
-       PolicySubObject policySubObjectFire3 = new PolicySubObject("TV", BigDecimal.valueOf(100.00), RiskType.FIRE);
-       PolicySubObject policySubObjectFire4 = new PolicySubObject("TV", BigDecimal.valueOf(100.00), RiskType.FIRE);
-       PolicySubObject policySubObjectFire5 = new PolicySubObject("TV", BigDecimal.valueOf(100.00), RiskType.FIRE);
-
-       PolicySubObject policySubObjectTheft1 = new PolicySubObject("Smartphone", BigDecimal.valueOf(50.00), RiskType.THEFT);
-       PolicySubObject policySubObjectTheft2 = new PolicySubObject("Smartphone", BigDecimal.valueOf(50.00), RiskType.THEFT);
-       PolicySubObject policySubObjectTheft3 = new PolicySubObject("Smartphone", BigDecimal.valueOf(2.51), RiskType.THEFT);
 
        List<PolicySubObject> policySubObjects = new ArrayList<>();
-       policySubObjects.add(policySubObjectFire1);
-       policySubObjects.add(policySubObjectFire2);
-       policySubObjects.add(policySubObjectFire3);
-       policySubObjects.add(policySubObjectFire4);
-       policySubObjects.add(policySubObjectFire5);
-       policySubObjects.add(policySubObjectTheft1);
-       policySubObjects.add(policySubObjectTheft2);
-       policySubObjects.add(policySubObjectTheft3);
-
        PolicyObject policyObject = new PolicyObject("House",policySubObjects);
        List<PolicyObject> policyObjects = new ArrayList<>();
        policyObjects.add(policyObject);
