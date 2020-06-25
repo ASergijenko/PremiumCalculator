@@ -1,13 +1,22 @@
 package com.proofit.business.services.calculator.components;
 
+import com.proofit.business.SpringConfig;
 import com.proofit.business.constants.Constants;
 import com.proofit.business.domain.RiskType;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = { SpringConfig.class })
+@TestPropertySource(locations="classpath:application.properties")
 public class CoefficientCalculatorTest {
 
     private CoefficientCalculator victim;
