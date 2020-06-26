@@ -1,11 +1,14 @@
 package com.proofit.business.services;
 
+import com.proofit.business.SpringConfig;
 import com.proofit.business.domain.*;
-import com.proofit.business.services.calculator.components.CoefficientCalculator;
 import com.proofit.business.services.calculator.PremiumCalculator;
-import com.proofit.business.services.calculator.components.SumInsuredByRiskCalculator;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,16 +16,13 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {SpringConfig.class})
+@TestPropertySource(locations = "classpath:application.properties")
 public class PremiumCalculatorAcceptanceTest {
 
+    @Autowired
     private PremiumCalculator victim;
-
-    @Before
-    public void initialization(){
-        SumInsuredByRiskCalculator sumInsuredByRiskCalculator = new SumInsuredByRiskCalculator();
-        CoefficientCalculator coefficientCalculator = new CoefficientCalculator();
-        victim = new PremiumCalculator(sumInsuredByRiskCalculator, coefficientCalculator);
-    }
 
     @Test
     public void integrationShouldCalculateCorrectPremium_2_28EUR() {

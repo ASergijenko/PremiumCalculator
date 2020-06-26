@@ -13,14 +13,10 @@ import java.math.RoundingMode;
 @Component
 public class PremiumCalculator {
 
-    SumInsuredByRiskCalculator sumInsuredByRiskCalculator;
-    CoefficientCalculator coefficientCalculator;
-
     @Autowired
-    public PremiumCalculator(SumInsuredByRiskCalculator sumInsuredByRiskCalculator, CoefficientCalculator coefficientCalculator) {
-        this.sumInsuredByRiskCalculator = sumInsuredByRiskCalculator;
-        this.coefficientCalculator = coefficientCalculator;
-    }
+    private SumInsuredByRiskCalculator sumInsuredByRiskCalculator;
+    @Autowired
+    private CoefficientCalculator coefficientCalculator;
 
     public String calculate(Policy policy) {
         BigDecimal calculatedSumInsuredByFire = sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.FIRE);

@@ -16,7 +16,7 @@ public class SumInsuredByRiskCalculatorTest {
     private SumInsuredByRiskCalculator victim;
 
     @Before
-    public void initialization(){
+    public void initialization() {
         victim = new SumInsuredByRiskCalculator();
         policy = new Policy("LV20-02-100000-5", PolicyStatus.REGISTERED, policyObjects());
     }
@@ -48,7 +48,7 @@ public class SumInsuredByRiskCalculatorTest {
         policySubObjects.add(policySubObjectTheft2);
         policySubObjects.add(policySubObjectTheft3);
 
-        PolicyObject policyObject = new PolicyObject("House",policySubObjects);
+        PolicyObject policyObject = new PolicyObject("House", policySubObjects);
         List<PolicyObject> policyObjects = new ArrayList<>();
         policyObjects.add(policyObject);
 

@@ -9,28 +9,34 @@ import java.math.BigDecimal;
 @Component
 public class CoefficientCalculator {
 
-    @Value( "${DEFAULT_COEFFICIENT_FIRE}" ) protected String defaultCoefficientFire;
-    @Value( "${CORRECTED_COEFFICIENT_FIRE}" ) protected String correctedCoefficientFire;
-    @Value( "${DEFAULT_COEFFICIENT_THEFT}" ) protected String defaultCoefficientTheft;
-    @Value( "${CORRECTED_COEFFICIENT_THEFT}" ) protected String correctedCoefficientTheft;
-    @Value( "${FIRE_COEFFICIENT_INFLUENCING_VALUE}" ) protected String fireCoefficientInfluencingValue;
-    @Value( "${THEFT_COEFFICIENT_INFLUENCING_VALUE}" ) protected String theftCoefficientInfluencingValue;
+    @Value("${DEFAULT_COEFFICIENT_FIRE}")
+    protected Double defaultCoefficientFire;
+    @Value("${CORRECTED_COEFFICIENT_FIRE}")
+    protected Double correctedCoefficientFire;
+    @Value("${DEFAULT_COEFFICIENT_THEFT}")
+    protected Double defaultCoefficientTheft;
+    @Value("${CORRECTED_COEFFICIENT_THEFT}")
+    protected Double correctedCoefficientTheft;
+    @Value("${FIRE_COEFFICIENT_INFLUENCING_VALUE}")
+    protected Double fireCoefficientInfluencingValue;
+    @Value("${THEFT_COEFFICIENT_INFLUENCING_VALUE}")
+    protected Double theftCoefficientInfluencingValue;
 
     public BigDecimal calculateCoefficient(BigDecimal sumInsured, RiskType riskType) {
         BigDecimal coefficient;
         switch (riskType) {
             case FIRE:
-                if (sumInsured.compareTo(BigDecimal.valueOf(Long.parseLong(fireCoefficientInfluencingValue))) > 0) {
-                    coefficient = BigDecimal.valueOf(Long.parseLong(correctedCoefficientFire));
+                if (sumInsured.compareTo(BigDecimal.valueOf(fireCoefficientInfluencingValue)) > 0) {
+                    coefficient = BigDecimal.valueOf(correctedCoefficientFire);
                 } else {
-                    coefficient = BigDecimal.valueOf(Long.parseLong(defaultCoefficientFire));
+                    coefficient = BigDecimal.valueOf(defaultCoefficientFire);
                 }
                 break;
             case THEFT:
-                if (sumInsured.compareTo(BigDecimal.valueOf(Long.parseLong(theftCoefficientInfluencingValue))) >= 0) {
-                    coefficient = BigDecimal.valueOf(Long.parseLong(correctedCoefficientTheft));
+                if (sumInsured.compareTo(BigDecimal.valueOf(theftCoefficientInfluencingValue)) >= 0) {
+                    coefficient = BigDecimal.valueOf(correctedCoefficientTheft);
                 } else {
-                    coefficient = BigDecimal.valueOf(Long.parseLong(defaultCoefficientTheft));
+                    coefficient = BigDecimal.valueOf(defaultCoefficientTheft);
                 }
                 break;
             default:
