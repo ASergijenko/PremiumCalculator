@@ -1,6 +1,5 @@
 package com.proofit.business.services;
 
-import com.proofit.business.constants.Constants;
 import com.proofit.business.domain.*;
 import com.proofit.business.services.calculator.PremiumCalculator;
 import com.proofit.business.services.calculator.components.CoefficientCalculator;
@@ -33,7 +32,7 @@ public class PremiumCalculatorTest {
     private PremiumCalculator victim;
 
     @Before
-    public void initialization(){
+    public void initialization() {
         policy = new Policy("LV20-02-100000-5", PolicyStatus.REGISTERED, policyObjects());
     }
 
@@ -41,8 +40,8 @@ public class PremiumCalculatorTest {
     public void shouldCalculateCorrectPremiumFor_2_28EUR() {
         Mockito.when(sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.FIRE)).thenReturn(BigDecimal.valueOf(100.00));
         Mockito.when(sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.THEFT)).thenReturn(BigDecimal.valueOf(8.00));
-        Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(100.00), RiskType.FIRE)).thenReturn(Constants.DEFAULT_COEFFICIENT_FIRE);
-        Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(8.00), RiskType.THEFT)).thenReturn(Constants.DEFAULT_COEFFICIENT_THEFT);
+        Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(100.00), RiskType.FIRE)).thenReturn(BigDecimal.valueOf(0.014));
+        Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(8.00), RiskType.THEFT)).thenReturn(BigDecimal.valueOf(0.11));
 
         String expected = "2.28 EUR";
         String actual = victim.calculate(policy);
@@ -54,8 +53,8 @@ public class PremiumCalculatorTest {
     public void shouldCalculateCorrectPremiumFor_17_13EUR() {
         Mockito.when(sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.FIRE)).thenReturn(BigDecimal.valueOf(500.00));
         Mockito.when(sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.THEFT)).thenReturn(BigDecimal.valueOf(102.51));
-        Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(500.00), RiskType.FIRE)).thenReturn(Constants.CORRECTED_COEFFICIENT_FIRE);
-        Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(102.51), RiskType.THEFT)).thenReturn(Constants.CORRECTED_COEFFICIENT_THEFT);
+        Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(500.00), RiskType.FIRE)).thenReturn(BigDecimal.valueOf(0.024));
+        Mockito.when(coefficientCalculator.calculateCoefficient(BigDecimal.valueOf(102.51), RiskType.THEFT)).thenReturn(BigDecimal.valueOf(0.05));
 
         String expected = "17.13 EUR";
         String actual = victim.calculate(policy);

@@ -14,9 +14,9 @@ import java.math.RoundingMode;
 public class PremiumCalculator {
 
     @Autowired
-    SumInsuredByRiskCalculator sumInsuredByRiskCalculator;
+    private SumInsuredByRiskCalculator sumInsuredByRiskCalculator;
     @Autowired
-    CoefficientCalculator coefficientCalculator;
+    private CoefficientCalculator coefficientCalculator;
 
     public String calculate(Policy policy) {
         BigDecimal calculatedSumInsuredByFire = sumInsuredByRiskCalculator.calculateSumInsured(policy, RiskType.FIRE);
